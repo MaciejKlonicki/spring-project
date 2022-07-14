@@ -1,5 +1,6 @@
 package com.example.springytlearning.controller;
 
+import com.example.springytlearning.dto.UserDto;
 import com.example.springytlearning.entity.User;
 import com.example.springytlearning.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,9 @@ public class UserController {
 
     //getting all users
     @GetMapping
-    private List<User> getAllUsers() {
-        return userService.getAllUsers();
+    private List<UserDto> getAllUsers(@RequestParam(required = false) int page) {
+        int pageNumber = page >= 0 ? page : 0;
+        return UserDtoMapper.mapToUserDtos(userService.getAllUsers(pageNumber));
     }
 
     //getting single user
