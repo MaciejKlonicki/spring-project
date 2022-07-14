@@ -2,6 +2,7 @@ package com.example.springytlearning.service;
 
 import com.example.springytlearning.entity.User;
 import com.example.springytlearning.repository.UserRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class UserService {
     //getting all Users
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        return userRepository.findAll();
+        return userRepository.findAllUsers(PageRequest.of(0,5));
     }
 
     //getting single user
